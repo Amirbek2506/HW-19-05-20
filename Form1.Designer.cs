@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.MCBtn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.HistoryTxtBox = new System.Windows.Forms.TextBox();
+            this.ResultTxtBox = new System.Windows.Forms.TextBox();
             this.MRBtn = new System.Windows.Forms.Button();
             this.MPlusBtn = new System.Windows.Forms.Button();
             this.MSBtn = new System.Windows.Forms.Button();
@@ -41,7 +41,7 @@
             this.Btn3 = new System.Windows.Forms.Button();
             this.Btn2 = new System.Windows.Forms.Button();
             this.Btn1 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
+            this.ResultBtn = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.Btn0 = new System.Windows.Forms.Button();
             this.PlusMinusBtn = new System.Windows.Forms.Button();
@@ -71,22 +71,24 @@
             this.MCBtn.Text = "MC";
             this.MCBtn.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // HistoryTxtBox
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(422, 30);
-            this.textBox1.TabIndex = 1;
+            this.HistoryTxtBox.Enabled = false;
+            this.HistoryTxtBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HistoryTxtBox.Location = new System.Drawing.Point(12, 12);
+            this.HistoryTxtBox.Name = "HistoryTxtBox";
+            this.HistoryTxtBox.Size = new System.Drawing.Size(422, 30);
+            this.HistoryTxtBox.TabIndex = 1;
+            this.HistoryTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox2
+            // ResultTxtBox
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox2.Location = new System.Drawing.Point(12, 48);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(422, 49);
-            this.textBox2.TabIndex = 2;
+            this.ResultTxtBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ResultTxtBox.Location = new System.Drawing.Point(12, 48);
+            this.ResultTxtBox.Name = "ResultTxtBox";
+            this.ResultTxtBox.Size = new System.Drawing.Size(422, 49);
+            this.ResultTxtBox.TabIndex = 2;
+            this.ResultTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // MRBtn
             // 
@@ -176,6 +178,7 @@
             this.Btn3.TabIndex = 16;
             this.Btn3.Text = "3";
             this.Btn3.UseVisualStyleBackColor = false;
+            this.Btn3.Click += new System.EventHandler(this.Btn3_Click);
             // 
             // Btn2
             // 
@@ -188,6 +191,7 @@
             this.Btn2.TabIndex = 15;
             this.Btn2.Text = "2";
             this.Btn2.UseVisualStyleBackColor = false;
+            this.Btn2.Click += new System.EventHandler(this.Btn2_Click);
             // 
             // Btn1
             // 
@@ -200,18 +204,20 @@
             this.Btn1.TabIndex = 14;
             this.Btn1.Text = "1";
             this.Btn1.UseVisualStyleBackColor = false;
+            this.Btn1.Click += new System.EventHandler(this.Btn1_Click);
             // 
-            // button17
+            // ResultBtn
             // 
-            this.button17.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button17.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button17.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.button17.Location = new System.Drawing.Point(333, 465);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(101, 58);
-            this.button17.TabIndex = 29;
-            this.button17.Text = "=";
-            this.button17.UseVisualStyleBackColor = false;
+            this.ResultBtn.BackColor = System.Drawing.Color.DodgerBlue;
+            this.ResultBtn.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResultBtn.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.ResultBtn.Location = new System.Drawing.Point(333, 465);
+            this.ResultBtn.Name = "ResultBtn";
+            this.ResultBtn.Size = new System.Drawing.Size(101, 58);
+            this.ResultBtn.TabIndex = 29;
+            this.ResultBtn.Text = "=";
+            this.ResultBtn.UseVisualStyleBackColor = false;
+            this.ResultBtn.Click += new System.EventHandler(this.ResultBtn_Click);
             // 
             // button18
             // 
@@ -224,6 +230,7 @@
             this.button18.TabIndex = 28;
             this.button18.Text = ",";
             this.button18.UseVisualStyleBackColor = false;
+            this.button18.Click += new System.EventHandler(this.Button18_Click);
             // 
             // Btn0
             // 
@@ -236,6 +243,7 @@
             this.Btn0.TabIndex = 27;
             this.Btn0.Text = "0";
             this.Btn0.UseVisualStyleBackColor = false;
+            this.Btn0.Click += new System.EventHandler(this.Btn0_Click);
             // 
             // PlusMinusBtn
             // 
@@ -248,6 +256,7 @@
             this.PlusMinusBtn.TabIndex = 26;
             this.PlusMinusBtn.Text = "+/-";
             this.PlusMinusBtn.UseVisualStyleBackColor = false;
+            this.PlusMinusBtn.Click += new System.EventHandler(this.PlusMinusBtn_Click);
             // 
             // MinusBtn
             // 
@@ -259,6 +268,7 @@
             this.MinusBtn.TabIndex = 25;
             this.MinusBtn.Text = "-";
             this.MinusBtn.UseVisualStyleBackColor = true;
+            this.MinusBtn.Click += new System.EventHandler(this.MinusBtn_Click);
             // 
             // Btn9
             // 
@@ -271,6 +281,7 @@
             this.Btn9.TabIndex = 24;
             this.Btn9.Text = "9";
             this.Btn9.UseVisualStyleBackColor = false;
+            this.Btn9.Click += new System.EventHandler(this.Btn9_Click);
             // 
             // Btn8
             // 
@@ -283,6 +294,7 @@
             this.Btn8.TabIndex = 23;
             this.Btn8.Text = "8";
             this.Btn8.UseVisualStyleBackColor = false;
+            this.Btn8.Click += new System.EventHandler(this.Btn8_Click);
             // 
             // Btn7
             // 
@@ -295,6 +307,7 @@
             this.Btn7.TabIndex = 22;
             this.Btn7.Text = "7";
             this.Btn7.UseVisualStyleBackColor = false;
+            this.Btn7.Click += new System.EventHandler(this.Btn7_Click);
             // 
             // PlusBtn
             // 
@@ -306,6 +319,7 @@
             this.PlusBtn.TabIndex = 21;
             this.PlusBtn.Text = "+";
             this.PlusBtn.UseVisualStyleBackColor = true;
+            this.PlusBtn.Click += new System.EventHandler(this.PlusBtn_Click);
             // 
             // Btn6
             // 
@@ -318,6 +332,7 @@
             this.Btn6.TabIndex = 20;
             this.Btn6.Text = "6";
             this.Btn6.UseVisualStyleBackColor = false;
+            this.Btn6.Click += new System.EventHandler(this.Btn6_Click);
             // 
             // Btn5
             // 
@@ -330,6 +345,7 @@
             this.Btn5.TabIndex = 19;
             this.Btn5.Text = "5";
             this.Btn5.UseVisualStyleBackColor = false;
+            this.Btn5.Click += new System.EventHandler(this.Btn5_Click);
             // 
             // Btn4
             // 
@@ -342,6 +358,7 @@
             this.Btn4.TabIndex = 18;
             this.Btn4.Text = "4";
             this.Btn4.UseVisualStyleBackColor = false;
+            this.Btn4.Click += new System.EventHandler(this.Btn4_Click);
             // 
             // MultipleBtn
             // 
@@ -353,6 +370,7 @@
             this.MultipleBtn.Size = new System.Drawing.Size(101, 58);
             this.MultipleBtn.TabIndex = 17;
             this.MultipleBtn.UseVisualStyleBackColor = true;
+            this.MultipleBtn.Click += new System.EventHandler(this.MultipleBtn_Click);
             // 
             // DevideBtn
             // 
@@ -364,6 +382,7 @@
             this.DevideBtn.Size = new System.Drawing.Size(101, 58);
             this.DevideBtn.TabIndex = 13;
             this.DevideBtn.UseVisualStyleBackColor = true;
+            this.DevideBtn.Click += new System.EventHandler(this.DevideBtn_Click);
             // 
             // SqrtBtn
             // 
@@ -397,13 +416,14 @@
             this.OunDevResultBtn.Size = new System.Drawing.Size(101, 58);
             this.OunDevResultBtn.TabIndex = 10;
             this.OunDevResultBtn.UseVisualStyleBackColor = true;
+            this.OunDevResultBtn.Click += new System.EventHandler(this.OunDevResultBtn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 530);
-            this.Controls.Add(this.button17);
+            this.ClientSize = new System.Drawing.Size(443, 523);
+            this.Controls.Add(this.ResultBtn);
             this.Controls.Add(this.button18);
             this.Controls.Add(this.Btn0);
             this.Controls.Add(this.PlusMinusBtn);
@@ -430,10 +450,10 @@
             this.Controls.Add(this.MSBtn);
             this.Controls.Add(this.MPlusBtn);
             this.Controls.Add(this.MRBtn);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ResultTxtBox);
+            this.Controls.Add(this.HistoryTxtBox);
             this.Controls.Add(this.MCBtn);
-            this.MinimumSize = new System.Drawing.Size(461, 577);
+            this.MinimumSize = new System.Drawing.Size(461, 570);
             this.Name = "Form1";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -446,8 +466,8 @@
         #endregion
 
         private System.Windows.Forms.Button MCBtn;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox HistoryTxtBox;
+        private System.Windows.Forms.TextBox ResultTxtBox;
         private System.Windows.Forms.Button MRBtn;
         private System.Windows.Forms.Button MPlusBtn;
         private System.Windows.Forms.Button MSBtn;
@@ -463,7 +483,7 @@
         private System.Windows.Forms.Button Btn3;
         private System.Windows.Forms.Button Btn2;
         private System.Windows.Forms.Button Btn1;
-        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button ResultBtn;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button Btn0;
         private System.Windows.Forms.Button PlusMinusBtn;

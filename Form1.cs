@@ -16,5 +16,262 @@ namespace HW_19_05_20
         {
             InitializeComponent();
         }
+        public double Result=0.0;
+        public char[] SumbolArr = { '+', '-', '*', '/' };
+        private void Btn1_Click(object sender, EventArgs e)
+        {
+            if (HistoryTxtBox.Text.Contains('='))
+            {
+                HistoryTxtBox.Clear();
+                ResultTxtBox.Clear();
+            }
+            ResultTxtBox.Text += "1";
+        }
+
+        private void Btn2_Click(object sender, EventArgs e)
+        {
+            if (HistoryTxtBox.Text.Contains('='))
+            {
+                HistoryTxtBox.Clear();
+                ResultTxtBox.Clear();
+            }
+            ResultTxtBox.Text += "2";
+        }
+
+        private void Btn3_Click(object sender, EventArgs e)
+        {
+
+            if (HistoryTxtBox.Text.Contains('='))
+            {
+                HistoryTxtBox.Clear();
+                ResultTxtBox.Clear();
+            }
+            ResultTxtBox.Text += "3";
+        }
+
+        private void Btn4_Click(object sender, EventArgs e)
+        {
+
+            if (HistoryTxtBox.Text.Contains('='))
+            {
+                HistoryTxtBox.Clear();
+                ResultTxtBox.Clear();
+            }
+            ResultTxtBox.Text += "4";
+        }
+
+        private void Btn5_Click(object sender, EventArgs e)
+        {
+
+            if (HistoryTxtBox.Text.Contains('='))
+            {
+                HistoryTxtBox.Clear();
+                ResultTxtBox.Clear();
+            }
+            ResultTxtBox.Text += "5";
+        }
+
+        private void Btn6_Click(object sender, EventArgs e)
+        {
+
+            if (HistoryTxtBox.Text.Contains('='))
+            {
+                HistoryTxtBox.Clear();
+                ResultTxtBox.Clear();
+            }
+            ResultTxtBox.Text += "6";
+        }
+
+        private void Btn7_Click(object sender, EventArgs e)
+        {
+
+            if (HistoryTxtBox.Text.Contains('='))
+            {
+                HistoryTxtBox.Clear();
+                ResultTxtBox.Clear();
+            }
+            ResultTxtBox.Text += "7";
+        }
+
+        private void Btn8_Click(object sender, EventArgs e)
+        {
+
+            if (HistoryTxtBox.Text.Contains('='))
+            {
+                HistoryTxtBox.Clear();
+                ResultTxtBox.Clear();
+            }
+            ResultTxtBox.Text += "8";
+        }
+
+        private void Btn9_Click(object sender, EventArgs e)
+        {
+
+            if (HistoryTxtBox.Text.Contains('='))
+            {
+                HistoryTxtBox.Clear();
+                ResultTxtBox.Clear();
+            }
+            ResultTxtBox.Text += "9";
+        }
+
+        private void Btn0_Click(object sender, EventArgs e)
+        {
+
+            if (HistoryTxtBox.Text.Contains('='))
+            {
+                HistoryTxtBox.Clear();
+                ResultTxtBox.Clear();
+            }
+            if ((!ResultTxtBox.Text.All(p => p == '0')) || (ResultTxtBox.Text.Length==0)) 
+            ResultTxtBox.Text += "0";
+        }
+
+        private void Button18_Click(object sender, EventArgs e)
+        {
+            if (ResultTxtBox.Text.Length == 0)
+                ResultTxtBox.Text = "0";
+            if (!ResultTxtBox.Text.Contains(','))
+                ResultTxtBox.Text += ",";
+        }
+
+        private void PlusMinusBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ResultTxtBox.Text.Length > 0)
+                {
+                    ResultTxtBox.Text = (Convert.ToDouble(ResultTxtBox.Text) * (-1)).ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ResultTxtBox.Clear();
+            }
+           
+        }
+        public bool FindResult()
+        {
+            try
+            {
+                if (HistoryTxtBox.Text.Contains('=')) HistoryTxtBox.Clear();
+                if (HistoryTxtBox.Text.Length == 0)Result = Convert.ToDouble(ResultTxtBox.Text);
+                char sumbol = HistoryTxtBox.Text.Intersect(SumbolArr).LastOrDefault();
+                if (ResultTxtBox.Text.Length > 0 && sumbol == HistoryTxtBox.Text.LastOrDefault())
+                {
+                    if (sumbol == '+') Result += Convert.ToDouble(ResultTxtBox.Text);
+                    if (sumbol == '-') Result -= Convert.ToDouble(ResultTxtBox.Text);
+                    if (sumbol == '*')
+                    {
+                        if (Result == 0) Result = 1;
+                        Result *= Convert.ToDouble(ResultTxtBox.Text);
+                    }
+                    if (sumbol == '/')
+                    {
+                        if (Convert.ToDouble(ResultTxtBox.Text) == 0)
+                            throw new Exception("Ошибка: Деления на нол!!!");
+                        Result /= Convert.ToDouble(ResultTxtBox.Text);
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ResultTxtBox.Clear();
+                return false;
+            }
+        }
+
+        private void PlusBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                    if (FindResult())
+                {
+                    HistoryTxtBox.Text += ResultTxtBox.Text + "+";
+                    ResultTxtBox.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ResultTxtBox.Clear();
+            }
+        }
+
+        private void OunDevResultBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MinusBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (FindResult())
+                {
+                    HistoryTxtBox.Text += ResultTxtBox.Text + "-";
+                    ResultTxtBox.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ResultTxtBox.Clear();
+            }
+        }
+
+        private void MultipleBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (FindResult())
+                {
+                    HistoryTxtBox.Text += ResultTxtBox.Text + "*";
+                    ResultTxtBox.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ResultTxtBox.Clear();
+            }
+        }
+
+        private void DevideBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (FindResult())
+                {
+                    HistoryTxtBox.Text += ResultTxtBox.Text + "/";
+                    ResultTxtBox.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ResultTxtBox.Clear();
+            }
+        }
+
+        private void ResultBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (FindResult())
+                {
+                    HistoryTxtBox.Text += ResultTxtBox.Text + "=";
+                    ResultTxtBox.Text= Result.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ResultTxtBox.Clear();
+            }
+        }
     }
 }
