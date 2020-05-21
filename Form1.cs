@@ -25,6 +25,7 @@ namespace HW_19_05_20
                 HistoryTxtBox.Clear();
                 ResultTxtBox.Clear();
             }
+            if(!(HistoryTxtBox.Text.LastOrDefault()==')'))
             ResultTxtBox.Text += "1";
         }
 
@@ -35,7 +36,8 @@ namespace HW_19_05_20
                 HistoryTxtBox.Clear();
                 ResultTxtBox.Clear();
             }
-            ResultTxtBox.Text += "2";
+            if (!(HistoryTxtBox.Text.LastOrDefault() == ')'))
+                ResultTxtBox.Text += "2";
         }
 
         private void Btn3_Click(object sender, EventArgs e)
@@ -46,7 +48,8 @@ namespace HW_19_05_20
                 HistoryTxtBox.Clear();
                 ResultTxtBox.Clear();
             }
-            ResultTxtBox.Text += "3";
+            if (!(HistoryTxtBox.Text.LastOrDefault() == ')'))
+                ResultTxtBox.Text += "3";
         }
 
         private void Btn4_Click(object sender, EventArgs e)
@@ -57,7 +60,8 @@ namespace HW_19_05_20
                 HistoryTxtBox.Clear();
                 ResultTxtBox.Clear();
             }
-            ResultTxtBox.Text += "4";
+            if (!(HistoryTxtBox.Text.LastOrDefault() == ')'))
+                ResultTxtBox.Text += "4";
         }
 
         private void Btn5_Click(object sender, EventArgs e)
@@ -68,7 +72,8 @@ namespace HW_19_05_20
                 HistoryTxtBox.Clear();
                 ResultTxtBox.Clear();
             }
-            ResultTxtBox.Text += "5";
+            if (!(HistoryTxtBox.Text.LastOrDefault() == ')'))
+                ResultTxtBox.Text += "5";
         }
 
         private void Btn6_Click(object sender, EventArgs e)
@@ -79,7 +84,8 @@ namespace HW_19_05_20
                 HistoryTxtBox.Clear();
                 ResultTxtBox.Clear();
             }
-            ResultTxtBox.Text += "6";
+            if (!(HistoryTxtBox.Text.LastOrDefault() == ')'))
+                ResultTxtBox.Text += "6";
         }
 
         private void Btn7_Click(object sender, EventArgs e)
@@ -90,7 +96,8 @@ namespace HW_19_05_20
                 HistoryTxtBox.Clear();
                 ResultTxtBox.Clear();
             }
-            ResultTxtBox.Text += "7";
+            if (!(HistoryTxtBox.Text.LastOrDefault() == ')'))
+                ResultTxtBox.Text += "7";
         }
 
         private void Btn8_Click(object sender, EventArgs e)
@@ -101,7 +108,8 @@ namespace HW_19_05_20
                 HistoryTxtBox.Clear();
                 ResultTxtBox.Clear();
             }
-            ResultTxtBox.Text += "8";
+            if (!(HistoryTxtBox.Text.LastOrDefault() == ')'))
+                ResultTxtBox.Text += "8";
         }
 
         private void Btn9_Click(object sender, EventArgs e)
@@ -112,7 +120,8 @@ namespace HW_19_05_20
                 HistoryTxtBox.Clear();
                 ResultTxtBox.Clear();
             }
-            ResultTxtBox.Text += "9";
+            if (!(HistoryTxtBox.Text.LastOrDefault() == ')'))
+                ResultTxtBox.Text += "9";
         }
 
         private void Btn0_Click(object sender, EventArgs e)
@@ -123,24 +132,31 @@ namespace HW_19_05_20
                 HistoryTxtBox.Clear();
                 ResultTxtBox.Clear();
             }
-            if ((!ResultTxtBox.Text.All(p => p == '0')) || (ResultTxtBox.Text.Length==0)) 
+            if (!(HistoryTxtBox.Text.LastOrDefault() == ')'))
+                if ((!ResultTxtBox.Text.All(p => p == '0')) || (ResultTxtBox.Text.Length==0)) 
             ResultTxtBox.Text += "0";
         }
 
         private void Button18_Click(object sender, EventArgs e)
         {
-            if (ResultTxtBox.Text.Length == 0)
-                ResultTxtBox.Text = "0";
-            if (!ResultTxtBox.Text.Contains(','))
-                ResultTxtBox.Text += ",";
+            if (!(HistoryTxtBox.Text.LastOrDefault() == ')'))
+            {
+                if (ResultTxtBox.Text.Length == 0)
+                    ResultTxtBox.Text = "0";
+                if (!ResultTxtBox.Text.Contains(','))
+                    ResultTxtBox.Text += ",";
+            }
         }
 
         private void PlusMinusBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (ResultTxtBox.Text.Length > 0)
+
+                if (ResultTxtBox.Text.Length > 0 && HistoryTxtBox.Text.LastOrDefault() != ')')
                 {
+                    if (HistoryTxtBox.Text.LastOrDefault() == '=') HistoryTxtBox.Clear();
+                    HistoryTxtBox.Text += $"negate({ResultTxtBox.Text})";
                     ResultTxtBox.Text = (Convert.ToDouble(ResultTxtBox.Text) * (-1)).ToString();
                 }
             }
@@ -156,9 +172,9 @@ namespace HW_19_05_20
             try
             {
                 if (HistoryTxtBox.Text.Contains('=')) HistoryTxtBox.Clear();
-                if (HistoryTxtBox.Text.Length == 0)Result = Convert.ToDouble(ResultTxtBox.Text);
                 char sumbol = HistoryTxtBox.Text.Intersect(SumbolArr).LastOrDefault();
-                if (ResultTxtBox.Text.Length > 0 && sumbol == HistoryTxtBox.Text.LastOrDefault())
+                if (HistoryTxtBox.Text.Length == 0 || sumbol == '\0') Result = Convert.ToDouble(ResultTxtBox.Text);
+                if (ResultTxtBox.Text.Length > 0)
                 {
                     if (sumbol == '+') Result += Convert.ToDouble(ResultTxtBox.Text);
                     if (sumbol == '-') Result -= Convert.ToDouble(ResultTxtBox.Text);
@@ -173,15 +189,15 @@ namespace HW_19_05_20
                             throw new Exception("Ошибка: Деления на нол!!!");
                         Result /= Convert.ToDouble(ResultTxtBox.Text);
                     }
+                    return true;
                 }
-                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 ResultTxtBox.Clear();
-                return false;
             }
+            return false;
         }
 
         private void PlusBtn_Click(object sender, EventArgs e)
@@ -189,10 +205,13 @@ namespace HW_19_05_20
             try
             {
                     if (FindResult())
-                {
-                    HistoryTxtBox.Text += ResultTxtBox.Text + "+";
+                    {
+                    if (HistoryTxtBox.Text.LastOrDefault() == ')')
+                        HistoryTxtBox.Text += "+";
+                    else
+                        HistoryTxtBox.Text += ResultTxtBox.Text + "+";
                     ResultTxtBox.Clear();
-                }
+                    }
             }
             catch (Exception ex)
             {
@@ -203,7 +222,20 @@ namespace HW_19_05_20
 
         private void OunDevResultBtn_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (ResultTxtBox.Text.Length > 0 && HistoryTxtBox.Text.LastOrDefault() != ')')
+                {
+                    if (HistoryTxtBox.Text.LastOrDefault() == '=') HistoryTxtBox.Clear();
+                    HistoryTxtBox.Text += $"1/({ResultTxtBox.Text})";
+                    ResultTxtBox.Text = (1 / Convert.ToDouble(ResultTxtBox.Text)).ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ResultTxtBox.Clear();
+            }
         }
 
         private void MinusBtn_Click(object sender, EventArgs e)
@@ -212,7 +244,10 @@ namespace HW_19_05_20
             {
                 if (FindResult())
                 {
-                    HistoryTxtBox.Text += ResultTxtBox.Text + "-";
+                    if (HistoryTxtBox.Text.LastOrDefault() == ')')
+                        HistoryTxtBox.Text += "-";
+                    else
+                        HistoryTxtBox.Text += ResultTxtBox.Text + "-";
                     ResultTxtBox.Clear();
                 }
             }
@@ -229,7 +264,10 @@ namespace HW_19_05_20
             {
                 if (FindResult())
                 {
-                    HistoryTxtBox.Text += ResultTxtBox.Text + "*";
+                    if (HistoryTxtBox.Text.LastOrDefault() == ')')
+                        HistoryTxtBox.Text += "*";
+                    else
+                        HistoryTxtBox.Text += ResultTxtBox.Text + "*";
                     ResultTxtBox.Clear();
                 }
             }
@@ -246,6 +284,9 @@ namespace HW_19_05_20
             {
                 if (FindResult())
                 {
+                    if(HistoryTxtBox.Text.LastOrDefault() == ')')
+                        HistoryTxtBox.Text +="/";
+                    else
                     HistoryTxtBox.Text += ResultTxtBox.Text + "/";
                     ResultTxtBox.Clear();
                 }
@@ -263,8 +304,65 @@ namespace HW_19_05_20
             {
                 if (FindResult())
                 {
+                    if(HistoryTxtBox.Text.LastOrDefault()==')')
+                        HistoryTxtBox.Text +=  "=";
+                    else
                     HistoryTxtBox.Text += ResultTxtBox.Text + "=";
                     ResultTxtBox.Text= Result.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ResultTxtBox.Clear();
+            }
+        }
+
+        private void KvadratBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ResultTxtBox.Text.Length > 0 && HistoryTxtBox.Text.LastOrDefault() != ')')
+                {
+                    if (HistoryTxtBox.Text.LastOrDefault() == '=') HistoryTxtBox.Clear();
+                    HistoryTxtBox.Text += $"Pow({ResultTxtBox.Text})";
+                    ResultTxtBox.Text = (Math.Pow(Convert.ToDouble(ResultTxtBox.Text), 2)).ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ResultTxtBox.Clear();
+            }
+        }
+
+        private void SqrtBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ResultTxtBox.Text.Length > 0 && HistoryTxtBox.Text.LastOrDefault() != ')')
+                {
+                    if (HistoryTxtBox.Text.LastOrDefault() == '=') HistoryTxtBox.Clear();
+                    HistoryTxtBox.Text += $"sqrt({ResultTxtBox.Text})";
+                    ResultTxtBox.Text = (Math.Sqrt(Convert.ToDouble(ResultTxtBox.Text))).ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ResultTxtBox.Clear();
+            }
+        }
+
+        private void ProtsentBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ResultTxtBox.Text.Length > 0 && HistoryTxtBox.Text.LastOrDefault() != ')')
+                {
+                    if (HistoryTxtBox.Text.LastOrDefault() == '=') HistoryTxtBox.Clear();
+                    HistoryTxtBox.Text += $"({ResultTxtBox.Text}%)";
+                    ResultTxtBox.Text = (Result*Convert.ToDouble(ResultTxtBox.Text)/100).ToString();
                 }
             }
             catch (Exception ex)
