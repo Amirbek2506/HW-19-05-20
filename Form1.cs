@@ -18,6 +18,7 @@ namespace HW_19_05_20
         }
         public double Result=0.0;
         public char[] SumbolArr = { '+', '-', '*', '/' };
+        public double storage = 0.0;
         private void Btn1_Click(object sender, EventArgs e)
         {
             if (HistoryTxtBox.Text.Contains('='))
@@ -309,6 +310,7 @@ namespace HW_19_05_20
                     else
                     HistoryTxtBox.Text += ResultTxtBox.Text + "=";
                     ResultTxtBox.Text= Result.ToString();
+                    HistoryListBox.Items.Add(HistoryTxtBox.Text + ResultTxtBox.Text);
                 }
             }
             catch (Exception ex)
@@ -388,6 +390,97 @@ namespace HW_19_05_20
         {
             if(ResultTxtBox.Text.Length>0)
            ResultTxtBox.Text= ResultTxtBox.Text.Remove(ResultTxtBox.Text.Length-1);
+        }
+
+        private void MSBtn_Click(object sender, EventArgs e)
+        {
+            if (ResultTxtBox.Text.Length > 0)
+            {
+                storage = Convert.ToDouble(ResultTxtBox.Text);
+                Mlabel.Text = "M: " + storage.ToString();
+                Mlabel.Visible = true;
+                StorageListBox.Items.Add(storage);
+                MCBtn.Enabled = true;
+                MRBtn.Enabled = true;
+            }
+        }
+
+        private void MPlusBtn_Click(object sender, EventArgs e)
+        {
+            if (ResultTxtBox.Text.Length > 0)
+            {
+                storage+=Convert.ToDouble(ResultTxtBox.Text);
+                Mlabel.Text ="M: "+ storage.ToString();
+                Mlabel.Visible = true;
+                if (MRBtn.Enabled == false)
+                    StorageListBox.Items.Add(storage);
+                else
+                    StorageListBox.Items[0] = storage;
+                MCBtn.Enabled = true;
+                MRBtn.Enabled = true;
+            }
+        }
+
+        private void MRBtn_Click(object sender, EventArgs e)
+        {
+            if(storage!=0)
+            ResultTxtBox.Text = storage.ToString();
+        }
+
+        private void MCBtn_Click(object sender, EventArgs e)
+        {
+            StorageListBox.Items.Clear();
+            MRBtn.Enabled = false;
+            MCBtn.Enabled = false;
+            Mlabel.Visible = false;
+        }
+
+        private void HistoryBtn_Click(object sender, EventArgs e)
+        {
+
+            if (HistoryJurnalRBtn.Visible == false)
+            {
+                HistoryJurnalRBtn.Visible = true;
+                StorageJurnalRBtn.Visible = true;
+                ClearJurnalBtn.Visible = true;
+                StorageListBox.Visible = true;
+            }
+            else
+            {
+                StorageListBox.Visible = false;
+                HistoryListBox.Visible = false;
+                HistoryJurnalRBtn.Visible = false;
+                StorageJurnalRBtn.Visible = false;
+                ClearJurnalBtn.Visible = false;
+            }
+
+        }
+
+        private void HistoryJurnalRBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            StorageListBox.Visible = false;
+            HistoryListBox.Visible = true;
+            ClearJurnalBtn.Visible = true;
+        }
+
+        private void StorageJurnalRBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            HistoryListBox.Visible = false;
+            StorageListBox.Visible = true;
+            ClearJurnalBtn.Visible = true;
+
+        }
+
+        private void ClearJurnalBtn_Click(object sender, EventArgs e)
+        {
+            if (StorageJurnalRBtn.Checked)
+            {
+                StorageListBox.Items.Clear();
+                Mlabel.Text = "";
+                storage = 0;
+            }
+            else if (HistoryJurnalRBtn.Checked)
+                HistoryListBox.Items.Clear();
         }
     }
 }
