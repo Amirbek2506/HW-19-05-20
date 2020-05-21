@@ -371,5 +371,23 @@ namespace HW_19_05_20
                 ResultTxtBox.Clear();
             }
         }
+
+        private void CEBtn_Click(object sender, EventArgs e)
+        {
+            ResultTxtBox.Clear();
+        }
+
+        private void CBtn_Click(object sender, EventArgs e)
+        {
+            ResultTxtBox.Clear();
+            HistoryTxtBox.Clear();
+            Result = 0;
+        }
+
+        private void BackspaceBtn_Click(object sender, EventArgs e)
+        {
+            if(ResultTxtBox.Text.Length>0)
+           ResultTxtBox.Text= ResultTxtBox.Text.Remove(ResultTxtBox.Text.Length-1);
+        }
     }
 }
